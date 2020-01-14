@@ -1,23 +1,29 @@
-'''Speak2Mary'''
+"""Speak2Mary"""
 import http.client as http
 import logging
 from urllib.parse import urlencode
 
+DEFAULT_HOST = "localhost"
+DEFAULT_PORT = 59125
 DEFAULT_INPUT_TYPE = "TEXT"
 DEFAULT_OUTPUT_TYPE = "AUDIO"
 DEFAULT_CODEC = "WAVE"
+DEFAULT_LOCALE = "en_US"
+DEFAULT_VOICE = "cmu-slt-hsmm"
 
 
 class MaryTTS(object):
 
     def __init__(self,
-                 host="localhost",
-                 port=59125,
-                 locale="en_US",
-                 voice="cmu-slt-hsmm"):
+                 host=DEFAULT_HOST,
+                 port=DEFAULT_PORT,
+                 codec=DEFAULT_CODEC,
+                 locale=DEFAULT_LOCALE,
+                 voice=DEFAULT_VOICE):
 
         self._host = host
         self._port = port
+        self._codec = codec
         self._locale = locale
         self._voice = voice
 
@@ -30,7 +36,7 @@ class MaryTTS(object):
             "INPUT_TYPE": DEFAULT_INPUT_TYPE,
             "OUTPUT_TYPE": DEFAULT_OUTPUT_TYPE,
             "LOCALE": self._locale,
-            "AUDIO": DEFAULT_CODEC,
+            "AUDIO": self._codec,
             "VOICE": self._voice,
         }
 
