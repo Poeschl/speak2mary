@@ -69,3 +69,7 @@ class MaryTTS(object):
     @property
     def voice(self):
         return self._voice
+
+    @property
+    def codec(self):
+        return self._codec

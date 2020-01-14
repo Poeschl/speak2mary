@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='speak2mary',
-      version='1.1.0',
+      version='1.2.0',
       description='A Python wrapper for Mary TTS',
       long_description=open('README.md').read(),
       long_description_content_type="text/markdown",
