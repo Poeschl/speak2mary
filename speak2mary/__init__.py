@@ -92,3 +92,7 @@ class MaryTTS(object):
             "FIRFilter": "type:3;fc1:500.0;fc2:2000.0",
             "JetPilot": ""
         }
+
+    @staticmethod
+    def supported_locales():
+        return ["sv", "tr", "lb", "it", "te", "en_US", "en_GB", "de", "fr", "ru"]
