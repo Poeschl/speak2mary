@@ -1,13 +1,12 @@
 """Speak2Mary"""
 import http.client as http
-import logging
 from urllib.parse import urlencode
 
 DEFAULT_HOST = "localhost"
 DEFAULT_PORT = 59125
 DEFAULT_INPUT_TYPE = "TEXT"
 DEFAULT_OUTPUT_TYPE = "AUDIO"
-DEFAULT_CODEC = "WAVE"
+DEFAULT_CODEC = "WAVE_FILE"
 DEFAULT_LOCALE = "en_US"
 DEFAULT_VOICE = "cmu-slt-hsmm"
 
@@ -50,7 +49,6 @@ class MaryTTS(object):
         response = conn.getresponse()
 
         if response.status != 200:
-            logging.error(response.getheaders())
             raise Exception("{0} - {1}: '{2}''".format(response.status, response.reason, response.readline()))
         return response.read()
 
@@ -73,3 +71,24 @@ class MaryTTS(object):
     @property
     def codec(self):
         return self._codec
+
+    @staticmethod
+    def supported_codecs():
+        return ["WAVE_FILE", "AU_FILE", "AIFF_FILE"]
+
+    @staticmethod
+    def supported_effects():
+        """Returns a dict of available effects and the default arguments"""
+        return {
+            "Volume": "amount:2.0;",
+            "TractScaler": "amount:1.5;",
+            "F0Scale": "f0Scale:2.0;",
+            "F0Add": "f0Add:50.0;",
+            "Rate": "durScale:1.5;",
+            "Robot": "amount:100.0;",
+            "Whisper": "amount:100.0;",
+            "Stadium": "amount:100.0",
+            "Chorus": "delay1:466;amp1:0.54;delay2:600;amp2:-0.10;delay3:250;amp3:0.30",
+            "FIRFilter": "type:3;fc1:500.0;fc2:2000.0",
+            "JetPilot": ""
+        }

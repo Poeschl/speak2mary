@@ -3,7 +3,7 @@ import unittest
 import wave
 from io import BytesIO
 
-from marytts import MaryTTS
+from speak2mary import MaryTTS
 
 
 class TestMaryTTS(unittest.TestCase):
