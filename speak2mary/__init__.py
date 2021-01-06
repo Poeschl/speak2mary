@@ -18,13 +18,15 @@ class MaryTTS(object):
                  port=DEFAULT_PORT,
                  codec=DEFAULT_CODEC,
                  locale=DEFAULT_LOCALE,
-                 voice=DEFAULT_VOICE):
+                 voice=DEFAULT_VOICE,
+                 input_type=DEFAULT_INPUT_TYPE):
 
         self._host = host
         self._port = port
         self._codec = codec
         self._locale = locale
         self._voice = voice
+        self._input_type = input_type
 
     def speak(self, message, effects=None):
         if effects is None:
@@ -32,8 +34,8 @@ class MaryTTS(object):
 
         raw_params = {
             "INPUT_TEXT": message.encode('UTF8'),
-            "INPUT_TYPE": DEFAULT_INPUT_TYPE,
             "OUTPUT_TYPE": DEFAULT_OUTPUT_TYPE,
+            "INPUT_TYPE": self._input_type,
             "LOCALE": self._locale,
             "AUDIO": self._codec,
             "VOICE": self._voice,
