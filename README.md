@@ -1,5 +1,8 @@
 # Speak2Mary
 
+![PyPI](https://img.shields.io/pypi/v/speak2mary)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/speak2mary)
+
 A Python wrapper for the MaryTTS Test-To-Speak system. It maps the http endpoints to python methods.
 
 Its mainly used for generating sound from an running MaryTTS server.
