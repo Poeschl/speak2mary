@@ -46,8 +46,10 @@ class MaryTTS(object):
             raw_params["effect_%s_parameters" % effect] = parameter
 
         conn = http.HTTPConnection(self._host, self._port)
-
-        conn.request("POST", "/process", urlencode(raw_params))
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        conn.request("POST", "/process", urlencode(raw_params), headers)
         response = conn.getresponse()
 
         if response.status != 200:
